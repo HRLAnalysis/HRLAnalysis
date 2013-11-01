@@ -1,0 +1,15 @@
+To compile the example run:
+
+gcc burst.c -lm -lncurses -ltinfo -o burst
+
+Note that this is not the exact same analysis that is done 
+here but our method should capture all of the bursts found 
+using this method.  The difference is that our method will 
+also capture smaller bursts that are missed with the 
+reference method.
+
+The reference for this can be downloaded at:
+http://www.psy.vanderbilt.edu/faculty/schall/pdfs/reofpres.pdf
+
+
+

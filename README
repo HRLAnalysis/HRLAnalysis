@@ -12,10 +12,8 @@ and visualization of the results.
 
 HRLAnalysis is currently supported by Corey M. Thibeault and
 Michael J. O'Brien.  The initially design and development was 
-completed by 
-Corey M. Thibeault.  The membrane voltage analysis 
-and extra 
-plotting functionality was developed by Micheal O'Brien.
+completed by Corey M. Thibeault.  The membrane voltage analysis 
+and extra plotting functionality was developed by Micheal O'Brien.
 
 
 See hrlAnalysis.pdf and the full paper(currently in submission) for 

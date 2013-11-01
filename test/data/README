@@ -1,0 +1,5 @@
+These files were first analyzed with spikes_extra and then with the quick_raster_out.m script.  -- CMT
+
+./spikes_extra 26200 28199 HRLAnalysis/test/data/CA1/spikes_0001.bin HRLAnalysis/test/data/CA1/spikes_0002.bin >> CA1_1_spikes.out
+
+[out,spike_raster] = quick_raster_out('CA1_1_spikes.out','CA1_', 1,1, 2000, 10, [0 4000]);
