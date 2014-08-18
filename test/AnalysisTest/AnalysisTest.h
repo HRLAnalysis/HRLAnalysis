@@ -35,12 +35,14 @@
 #include <HrlNeuralAnalysisHRLSim.h>
 #include <HrlNeuralAnalysisVoltage.h>
 #include <NeuronParams.h>
+#include <HrlAnalysisUtilities.h>
 
 #define CA1_FILE_STR_PREFIX "../../test/data/CA1/"
 #define SERIALIZE_FILE_STR_PREFIX "../../test/data/serialize/"
 #define BURST_NORMAL_FILE_STR_PREFIX "../../test/data/burstAnalysis/normal/Data/"
 #define SYNCH_FILE_DATA1 "../../test/data/synchrony/synchrony_data.dat"
 #define VOLT_FILE_STR_PREFIX "../../test/data/VOLT/"
+#define STATE_FILE_STR_PREFIX "../../test/data/state/"
     
 class AnalysisTest : public CppUnit::TestFixture {
         CPPUNIT_TEST_SUITE( AnalysisTest );
@@ -93,8 +95,14 @@ class AnalysisTest : public CppUnit::TestFixture {
         CPPUNIT_TEST( testGetBurstAnalysis );
         CPPUNIT_TEST( testGetSPIKESynchrony );
         CPPUNIT_TEST( testGetSPIKESynchrony2 );
+#if INCLUDE_SERIALIZATION
         CPPUNIT_TEST( testSerialize );
         CPPUNIT_TEST( testSerializeVoltage );
+#endif
+        CPPUNIT_TEST( testgetPairwisePearsons );
+        CPPUNIT_TEST( testgetAllPairsPearsons );
+        CPPUNIT_TEST( testStateDistance );
+        CPPUNIT_TEST( testFilter );
         CPPUNIT_TEST_SUITE_END();
     private:
         AnalysisData * data_;
@@ -150,9 +158,14 @@ class AnalysisTest : public CppUnit::TestFixture {
         void testGetBurstAnalysis();
         void testGetSPIKESynchrony();
         void testGetSPIKESynchrony2();
+#if INCLUDE_SERIALIZATION
         void testSerialize();
         void testSerializeVoltage();
-
+#endif
+        void testgetPairwisePearsons();
+        void testgetAllPairsPearsons();
+        void testStateDistance();
+        void testFilter();
 };
 
 

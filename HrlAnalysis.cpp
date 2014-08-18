@@ -45,6 +45,7 @@
 #include <HrlNeuralAnalysisHRLSim.h>
 #include <HrlNeuralAnalysisVoltage.h>
 #include <NeuronParams.h>
+#include <HrlAnalysisUtilities.h>
 
 using namespace boost::python;
 using namespace hrlAnalysis;
@@ -58,17 +59,29 @@ struct HrlNeuralAnalysisCallback : HrlNeuralAnalysis, wrapper<HrlNeuralAnalysis>
         std::vector<std::string> fileNames_;
 };
 
+PyObject* HrlNeuralAnalysisExceptionType = NULL;
+
+void translateHrlNeuralAnalysisException(HrlNeuralAnalysisException const &e) {
+  assert(HrlNeuralAnalysisExceptionType != NULL);
+  object pythonExceptionInstance(e);
+  PyErr_SetObject(HrlNeuralAnalysisExceptionType, pythonExceptionInstance.ptr());
+}
+
 BOOST_PYTHON_MODULE(libHrlAnalysis) {
 
     // Add the HrlNeuralAnalysis Class
     class_<HrlNeuralAnalysis, boost::noncopyable, boost::shared_ptr< HrlNeuralAnalysisCallback > >("HrlNeuralAnalysis", init<int,int,int,int,std::vector<std::string> >())
         .def("dumpSpikeActivity", &HrlNeuralAnalysis::dumpSpikeActivity)
         .def("dumpCellActivity", &HrlNeuralAnalysis::dumpCellActivity)
+#if INCLUDE_SERIALIZATION
         .def("save", &HrlNeuralAnalysis::save)
         .def("load", &HrlNeuralAnalysis::load)
+#endif
         .def("getSpikeTimes", &HrlNeuralAnalysis::getSpikeTimes)
         .def("getCOV", &HrlNeuralAnalysis::getCOV)
+        .def("getISI", &HrlNeuralAnalysis::getISI)
         .def("getGaussWindowRate", &HrlNeuralAnalysis::getGaussWindowRate)
+        .def("filterPopGauss", &HrlNeuralAnalysis::filterPopGauss)
         .def("getWindowRate", &HrlNeuralAnalysis::getWindowRate)
         .def("getCellRates", &HrlNeuralAnalysis::getCellRates)
         .def("getRateBins", &HrlNeuralAnalysis::getRateBins)
@@ -76,6 +89,8 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def("getBursting", &HrlNeuralAnalysis::getBursting)
         .def("setEmptyTrainSynchVal", &HrlNeuralAnalysis::setEmptyTrainSynchVal)
         .def("getPairSynchrony", &HrlNeuralAnalysis::getPairSynchrony)
+        .def("getAllPairsPearsons", &HrlNeuralAnalysis::getAllPairsPearsons)
+        .def("getPairwisePearsons", &HrlNeuralAnalysis::getPairwisePearsons)
         .def("getPopulationSynchrony", &HrlNeuralAnalysis::getPopulationSynchrony)
         .def("calcSPIKEDistance", &HrlNeuralAnalysis::calcSPIKEDistance)
         .def("calcSPIKEDistanceAvg", &HrlNeuralAnalysis::calcSPIKEDistanceAvg)
@@ -87,6 +102,10 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def("setParamsIn", &HrlNeuralAnalysis::setParamsIn)
         .def("addSpike", &HrlNeuralAnalysis::addSpike)
     ;
+
+	class_<HrlNeuralAnalysisException> HrlNeuralAnalysisExceptionClass("HrlNeuralAnalysisException", init<std::string>());
+	HrlNeuralAnalysisExceptionType = HrlNeuralAnalysisExceptionClass.ptr();
+	register_exception_translator<HrlNeuralAnalysisException>(&translateHrlNeuralAnalysisException);
 
     class_<HrlNeuralAnalysisHRLSim, bases<HrlNeuralAnalysis> >("HrlNeuralAnalysisHRLSim", init<int,int,int,int,std::vector<std::string> >())
         .def("buildDataStructures", &HrlNeuralAnalysisHRLSim::buildDataStructures)
@@ -116,6 +135,11 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def(vector_indexing_suite< std::vector< std::pair<int,int> > >())
     ;
 
+    class_<CorrelationInfo, boost::shared_ptr< CorrelationInfo > > ("CorrelationInfo")
+        .def_readwrite("corrs", &CorrelationInfo::corrs)
+        //.def_readwrite("probs", &CorrelationInfo::probs)
+    ;
+
     class_<std::vector<float> > ("CellVoltageInfo")
         .def(vector_indexing_suite<std::vector<float> >())
     ;
@@ -135,6 +159,7 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def_readwrite("endIdx", &NeuronParams::endIdx)
         .def_readwrite("sampleFreq", &NeuronParams::sampleFreq)
         .def_readwrite("isDataCompiled", &NeuronParams::isDataCompiled)
+        .def_readwrite("fileNames", &NeuronParams::fileNames)
     ;
 
     class_<BurstInfo, boost::shared_ptr< BurstInfo > >("BurstInfo", init<>())
@@ -161,8 +186,20 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def_readwrite("cov", &CovInfo::cov)
     ;
 
+    class_<IsiInfo, boost::shared_ptr<IsiInfo> >("IsiInfo", init<>())
+        .def_readwrite("isi", &IsiInfo::isi)
+    ;
+
     class_<RateInfo, boost::shared_ptr<RateInfo> >("RateInfo", init<>())
         .def_readwrite("rates", &RateInfo::rates)
+    ;
+
+    class_<PopFilterInfo, boost::shared_ptr<PopFilterInfo> >("PopFilterInfo", init<>())
+        .def_readwrite("states", &PopFilterInfo::states)
+    ;
+
+    class_<StateDistance, boost::shared_ptr<StateDistance> >("StateDistance", init<>())
+        .def_readwrite("state", &StateDistance::state)
     ;
 
     class_<SynchronyInfo, boost::shared_ptr<SynchronyInfo> >("SynchronyInfo", init<>())
@@ -185,6 +222,10 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def(vector_indexing_suite<std::vector<double> >())
     ;
 
+    class_<std::vector< std::vector<double> > >("vector_double_2d")
+        .def(vector_indexing_suite<std::vector< std::vector<double> > >())
+    ;
+
     class_<std::vector<int> >("vector_int")
         .def(vector_indexing_suite<std::vector<int> >())
     ;
@@ -197,5 +238,9 @@ BOOST_PYTHON_MODULE(libHrlAnalysis) {
         .def_readwrite( "first", &std::pair< int, int >::first)
         .def_readwrite( "second", &std::pair< int, int >::second)
     ;
+
+    // Utility Functions
+    def("calcStateDistance", calcStateDistance);
+    def("calcStateDistanceWithin", calcStateDistanceWithin);
 
 }

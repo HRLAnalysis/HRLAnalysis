@@ -121,6 +121,16 @@ class TestAnalysis(unittest.TestCase):
         self.assertTrue(data.compareSpikeBinsAt(rateBinInfo.counts,1)) 
 
 
+    # Test Gaussian Convolution
+    def test_ConvolveGaussian(self):
+        fileNames = libHrlAnalysis.vector_string()
+        fileNames.append('../../test/data/CA1/spikes_0001.bin')
+        fileNames.append('../../test/data/CA1/spikes_0002.bin')
+
+        analysis = libHrlAnalysis.HrlNeuralAnalysisHRLSim(0,4000,26200,28199,
+                                                          fileNames)
+        #convolveGaussInfo = analysis.convolveGaussPop(5)        
+
     # Test Cell Rates and Bins
     def test_GetCellRatesAndBins(self):
         fileNames = libHrlAnalysis.vector_string()
@@ -208,6 +218,8 @@ class TestAnalysis(unittest.TestCase):
 
         self.assertTrue(data.compareRasterDataDim(spikes.time,1))
         self.assertTrue(data.compareRasterDataDim(spikes.spikes,2))
+
+       
 
 
 

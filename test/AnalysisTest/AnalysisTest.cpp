@@ -47,7 +47,7 @@ void AnalysisTest::testConstructor() {
     AnalysisData *data = new AnalysisData();
     // Clean up after yourself
     delete data;
-    cout << "\tFinish testConstructor." << endl;
+    cout << "\t\tFinish testConstructor." << endl;
 }
 
 void AnalysisTest::testGetRasterResult() {
@@ -73,7 +73,7 @@ void AnalysisTest::testGetRasterResult() {
 
     delete data;
 
-    cout << "\tFinish testGetRasterResult." << endl;
+    cout << "\t\tFinish testGetRasterResult." << endl;
 }
 
 void AnalysisTest::testGetCellRates() {
@@ -97,7 +97,7 @@ void AnalysisTest::testGetCellRates() {
     CPPUNIT_ASSERT(data->compareSpikeRates(cellRateInfo->cells));
     CPPUNIT_ASSERT(!data->compareSpikeRates(cellRateInfo->rates));
 
-    cout << "\tFinish testGetCellRates." << endl;
+    cout << "\t\tFinish testGetCellRates." << endl;
 }
 
 void AnalysisTest::testGetWindowRates() {
@@ -116,7 +116,7 @@ void AnalysisTest::testGetWindowRates() {
     CPPUNIT_ASSERT(data->fillWindowRates( string(CA1_FILE_STR_PREFIX) + string("CA1_window_rates.dat") ));
     rates = spikeStuff->getWindowRate(step,rateWindow);
     CPPUNIT_ASSERT(data->compareWindowRates(rates->rates));
-    cout << "\tFinish testGetWindowRates." << endl;
+    cout << "\t\tFinish testGetWindowRates." << endl;
 }
 
 void AnalysisTest::testGetGaussWindowRates() {
@@ -135,7 +135,7 @@ void AnalysisTest::testGetGaussWindowRates() {
     CPPUNIT_ASSERT(data->fillWindowRates( string(CA1_FILE_STR_PREFIX) + string("CA1_gauss_window_rates.dat") ));
     rates = spikeStuff->getGaussWindowRate(step,rateWindow);
     CPPUNIT_ASSERT(data->compareWindowRates( rates->rates ) );
-    cout << "\tFinish testGaussWindowRates." << endl;
+    cout << "\t\tFinish testGaussWindowRates." << endl;
 }
 
 void AnalysisTest::testGetGaussWindowRates2() {
@@ -154,7 +154,7 @@ void AnalysisTest::testGetGaussWindowRates2() {
     CPPUNIT_ASSERT(data->fillWindowRates( string(CA1_FILE_STR_PREFIX) + string("CA1_gauss_window_rates.dat") ));
     rates = spikeStuff->getGaussWindowRate(step,rateWindow);
     CPPUNIT_ASSERT(!data->compareWindowRates( rates->rates ) );
-    cout << "\tFinish testGaussWindowRates2." << endl;
+    cout << "\t\tFinish testGaussWindowRates2." << endl;
 }
 
 void AnalysisTest::testGetRateBins() {
@@ -174,7 +174,7 @@ void AnalysisTest::testGetRateBins() {
     CPPUNIT_ASSERT(data->compareSpikeBinsAt(binInfo->counts, 0) );
     CPPUNIT_ASSERT(data->compareSpikeBinsAt(binInfo->counts, 1) );
     delete data;
-    cout << "\tFinish testGetRateBins." << endl;
+    cout << "\t\tFinish testGetRateBins." << endl;
 }
 
 void AnalysisTest::testGetCellRatesAndBins() {
@@ -202,7 +202,7 @@ void AnalysisTest::testGetCellRatesAndBins() {
     CPPUNIT_ASSERT(data->compareSpikeBinsAt(cellInfo->counts, 0) );
     CPPUNIT_ASSERT(data->compareSpikeBinsAt(cellInfo->counts, 1) );
 
-    cout << "\tFinish testCellRatesAndBins." << endl;
+    cout << "\t\tFinish testCellRatesAndBins." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults1() {
@@ -234,7 +234,7 @@ void AnalysisTest::testGetVoltageResults1() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults1." << endl;
+    cout << "\t\tFinish testGetVoltageResults1." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults2() {
@@ -262,7 +262,7 @@ void AnalysisTest::testGetVoltageResults2() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults2." << endl;
+    cout << "\t\tFinish testGetVoltageResults2." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults3() {
@@ -290,7 +290,7 @@ void AnalysisTest::testGetVoltageResults3() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults3." << endl;
+    cout << "\t\tFinish testGetVoltageResults3." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults4() {
@@ -318,7 +318,7 @@ void AnalysisTest::testGetVoltageResults4() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults4." << endl;
+    cout << "\t\tFinish testGetVoltageResults4." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults5() {
@@ -346,7 +346,7 @@ void AnalysisTest::testGetVoltageResults5() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults5." << endl;
+    cout << "\t\tFinish testGetVoltageResults5." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults6() {
@@ -374,7 +374,7 @@ void AnalysisTest::testGetVoltageResults6() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults6." << endl;
+    cout << "\t\tFinish testGetVoltageResults6." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults7() {
@@ -402,7 +402,7 @@ void AnalysisTest::testGetVoltageResults7() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults7." << endl;
+    cout << "\t\tFinish testGetVoltageResults7." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults8() {
@@ -430,7 +430,7 @@ void AnalysisTest::testGetVoltageResults8() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults8." << endl;
+    cout << "\t\tFinish testGetVoltageResults8." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults9() {
@@ -458,7 +458,7 @@ void AnalysisTest::testGetVoltageResults9() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults9." << endl;
+    cout << "\t\tFinish testGetVoltageResults9." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults10() {
@@ -486,7 +486,7 @@ void AnalysisTest::testGetVoltageResults10() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults10." << endl;
+    cout << "\t\tFinish testGetVoltageResults10." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults11() {
@@ -514,7 +514,7 @@ void AnalysisTest::testGetVoltageResults11() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults11." << endl;
+    cout << "\t\tFinish testGetVoltageResults11." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults12() {
@@ -542,7 +542,7 @@ void AnalysisTest::testGetVoltageResults12() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults12." << endl;
+    cout << "\t\tFinish testGetVoltageResults12." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults13() {
@@ -570,7 +570,7 @@ void AnalysisTest::testGetVoltageResults13() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults13." << endl;
+    cout << "\t\tFinish testGetVoltageResults13." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults14() {
@@ -598,7 +598,7 @@ void AnalysisTest::testGetVoltageResults14() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults14." << endl;
+    cout << "\t\tFinish testGetVoltageResults14." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults15() {
@@ -626,7 +626,7 @@ void AnalysisTest::testGetVoltageResults15() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults15." << endl;
+    cout << "\t\tFinish testGetVoltageResults15." << endl;
 }
 
 void AnalysisTest::testGetVoltageResults16() {
@@ -654,7 +654,7 @@ void AnalysisTest::testGetVoltageResults16() {
 
     delete data;
 
-    cout << "\tFinish testGetVoltageResults16." << endl;
+    cout << "\t\tFinish testGetVoltageResults16." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults1() {
@@ -692,7 +692,7 @@ void AnalysisTest::testGetVoltageSpikeResults1() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults1." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults1." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults2() {
@@ -730,7 +730,7 @@ void AnalysisTest::testGetVoltageSpikeResults2() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults2." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults2." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults3() {
@@ -768,7 +768,7 @@ void AnalysisTest::testGetVoltageSpikeResults3() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults3." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults3." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults4() {
@@ -806,7 +806,7 @@ void AnalysisTest::testGetVoltageSpikeResults4() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults4." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults4." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults5() {
@@ -844,7 +844,7 @@ void AnalysisTest::testGetVoltageSpikeResults5() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults5." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults5." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults6() {
@@ -882,7 +882,7 @@ void AnalysisTest::testGetVoltageSpikeResults6() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults6." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults6." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults7() {
@@ -920,7 +920,7 @@ void AnalysisTest::testGetVoltageSpikeResults7() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults7." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults7." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults8() {
@@ -958,7 +958,7 @@ void AnalysisTest::testGetVoltageSpikeResults8() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults8." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults8." << endl;
 }
 
 
@@ -998,7 +998,7 @@ void AnalysisTest::testGetVoltageSpikeResults9() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults9." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults9." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults10() {
@@ -1036,7 +1036,7 @@ void AnalysisTest::testGetVoltageSpikeResults10() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults10." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults10." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults11() {
@@ -1074,7 +1074,7 @@ void AnalysisTest::testGetVoltageSpikeResults11() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults11." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults11." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults12() {
@@ -1112,7 +1112,7 @@ void AnalysisTest::testGetVoltageSpikeResults12() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults12." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults12." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults13() {
@@ -1150,7 +1150,7 @@ void AnalysisTest::testGetVoltageSpikeResults13() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults13." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults13." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults14() {
@@ -1188,7 +1188,7 @@ void AnalysisTest::testGetVoltageSpikeResults14() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults14." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults14." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults15() {
@@ -1226,7 +1226,7 @@ void AnalysisTest::testGetVoltageSpikeResults15() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults15." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults15." << endl;
 }
 
 void AnalysisTest::testGetVoltageSpikeResults16() {
@@ -1264,7 +1264,7 @@ void AnalysisTest::testGetVoltageSpikeResults16() {
     delete spikeResults;
     delete voltageTest;
 
-    cout << "\tFinish testGetVoltageSpikeResults16." << endl;
+    cout << "\t\tFinish testGetVoltageSpikeResults16." << endl;
 }
 
 void AnalysisTest::testGetCOV() {
@@ -1283,7 +1283,7 @@ void AnalysisTest::testGetCOV() {
 
     CPPUNIT_ASSERT(data->compareCOV(covInfo->cov));
 
-    cout << "\tFinish testCOV." << endl;
+    cout << "\t\tFinish testCOV." << endl;
 }
 
 void AnalysisTest::testSurpriseValue() {
@@ -1305,7 +1305,7 @@ void AnalysisTest::testSurpriseValue() {
     S = spikeStuff->calcSurprise(5,1,1);
     CPPUNIT_ASSERT( fabs(S-0.0067607) < 0.0000001);
 
-    cout << "\tFinish testSurpriseValue." << endl;
+    cout << "\t\tFinish testSurpriseValue." << endl;
 }
 
 // These are to test our tester class AnalysisData (seems redundant)
@@ -1348,7 +1348,7 @@ void AnalysisTest::testAnalysisIntData() {
     
     delete data;
     
-    cout << "\tFinish testAnalysisData." << endl;
+    cout << "\t\tFinish testAnalysisData." << endl;
     
 }
 
@@ -1394,7 +1394,7 @@ void AnalysisTest::testAnalysisDblData() {
             
     delete data;
     
-    cout << "\tFinish testAnalysisData." << endl;
+    cout << "\t\tFinish testAnalysisData." << endl;
     
 }
 
@@ -1455,7 +1455,7 @@ void AnalysisTest::testAnalysisIntData2() {
     
     delete data;
     
-    cout << "\tFinish testAnalysisData2." << endl;
+    cout << "\t\tFinish testAnalysisData2." << endl;
     
 }
 
@@ -1525,7 +1525,7 @@ void AnalysisTest::testAnalysisDblData2() {
                     
     delete data;
     
-    cout << "\tFinish testAnalysisData2." << endl;
+    cout << "\t\tFinish testAnalysisData2." << endl;
     
 }
 
@@ -1656,7 +1656,7 @@ void AnalysisTest::testGetBurstAnalysis() {
     CPPUNIT_ASSERT( (burstResults->at(11)).at(8).stop == 2756 );
     CPPUNIT_ASSERT( ( (burstResults->at(11)).at(8).surprise - 4.61) < 0.01  );
 
-    cout << "\tFinish testBurstAnalysis." << endl;
+    cout << "\t\tFinish testBurstAnalysis." << endl;
 }
 
 void AnalysisTest::testGetSPIKESynchrony() {
@@ -1709,7 +1709,7 @@ void AnalysisTest::testGetSPIKESynchrony() {
     CPPUNIT_ASSERT( fabs(spikeAnalysis.calcSPIKEDistance(synchronyInfo)-0.274376) < 0.000001 );
     CPPUNIT_ASSERT( fabs(spikeAnalysis.calcSPIKEDistanceAvg(synchronyInfo)-0.211059) < 0.000001 );
 
-    cout << "\tFinish testSPIKESynchrony." << endl;
+    cout << "\t\tFinish testSPIKESynchrony." << endl;
 }
 
 void AnalysisTest::testGetSPIKESynchrony2() {
@@ -1741,9 +1741,10 @@ void AnalysisTest::testGetSPIKESynchrony2() {
         CPPUNIT_ASSERT( fabs(synchronyInfo->S.at(i)-S_in.at(i)) < 0.00000001);
     }
 
-    cout << "\tFinish testSPIKESynchrony2." << endl;
+    cout << "\t\tFinish testSPIKESynchrony2." << endl;
 }
 
+#if INCLUDE_SERIALIZATION
 void AnalysisTest::testSerialize() {
 	cout << "\tStart testSerialize..." << endl;
 
@@ -1771,7 +1772,7 @@ void AnalysisTest::testSerialize() {
 
 	delete data;
 
-	cout << "\tFinish testSerialize." << endl;
+	cout << "\t\tFinish testSerialize." << endl;
 
 }
 
@@ -1802,7 +1803,221 @@ void AnalysisTest::testSerializeVoltage() {
     CPPUNIT_ASSERT(data->compareVoltageData(voltageInfo->voltage, tol));
     delete data;
 
-    cout << "\tFinish testSerializeVoltage." << endl;
+    cout << "\t\tFinish testSerializeVoltage." << endl;
 
 }
+
+#endif
+
+void AnalysisTest::testgetPairwisePearsons() {
+	cout << "\tStart testgetPairwisePearsons..." << endl;
+
+	std::vector<std::string> fileNames;
+	hrlAnalysis::SpikeAnalysisAccess spikeAnalysis(0,1300,0,1,fileNames,4);
+
+	// Fill in the spike information.
+	int temp1[] = {100,200,300,400,500,600,700,800,900,1000,1100,1200};
+	int temp2[] = {100,210,320,430,540,650,760,870,980,1090,1200};
+	int temp3[] = {300,305,400,500};
+	int temp4[] = {200,250,275,600,625,1200};
+
+	for(int i = 0; i < 12; i++) {
+		spikeAnalysis.cellActivityAccess_->at(0).push_back(temp1[i]);
+	}
+
+	for(int i = 0; i < 11; i++) {
+		spikeAnalysis.cellActivityAccess_->at(1).push_back(temp2[i]);
+	}
+
+	for(int i = 0; i < 4; i++) {
+		spikeAnalysis.cellActivityAccess_->at(2).push_back(temp3[i]);
+	}
+
+	for(int i = 0; i < 6; i++) {
+		spikeAnalysis.cellActivityAccess_->at(3).push_back(temp4[i]);
+	}
+
+	spikeAnalysis.paramsInAccess_->isDataCompiled = true;
+
+	CPPUNIT_ASSERT( fabs(spikeAnalysis.getPairwisePearsons(0,1,100)-0.6770032) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(spikeAnalysis.getPairwisePearsons(0,2,100)-0.14664712) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(spikeAnalysis.getPairwisePearsons(0,3,100)-0.14334554) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(spikeAnalysis.getPairwisePearsons(1,2,100)-0.21661214) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(spikeAnalysis.getPairwisePearsons(1,3,100)-0.2117354) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(spikeAnalysis.getPairwisePearsons(2,3,100)- (-0.25225453)) < 0.000001 );
+	cout << "\t\tFinish testgetPairwisePearsons." << endl;
+}
+
+void AnalysisTest::testgetAllPairsPearsons() {
+	cout << "\tStart testgetAllPairsPearsons..." << endl;
+
+	std::vector<std::string> fileNames;
+	hrlAnalysis::SpikeAnalysisAccess spikeAnalysis(0,1300,0,3,fileNames,4);
+
+	// Fill in the spike information.
+	int temp1[] = {100,200,300,400,500,600,700,800,900,1000,1100,1200};
+	int temp2[] = {100,210,320,430,540,650,760,870,980,1090,1200};
+	int temp3[] = {300,305,400,500};
+	int temp4[] = {200,250,275,600,625,1200};
+
+	for(int i = 0; i < 12; i++) {
+		spikeAnalysis.cellActivityAccess_->at(0).push_back(temp1[i]);
+	}
+
+	for(int i = 0; i < 11; i++) {
+		spikeAnalysis.cellActivityAccess_->at(1).push_back(temp2[i]);
+	}
+
+	for(int i = 0; i < 4; i++) {
+		spikeAnalysis.cellActivityAccess_->at(2).push_back(temp3[i]);
+	}
+
+	for(int i = 0; i < 6; i++) {
+		spikeAnalysis.cellActivityAccess_->at(3).push_back(temp4[i]);
+	}
+
+	spikeAnalysis.paramsInAccess_->isDataCompiled = true;
+
+	hrlAnalysis::CorrelationInfoPtr correlationInfo = spikeAnalysis.getAllPairsPearsons(100);
+
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(0).at(1)-0.6770032) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(0).at(2)-0.14664712) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(0).at(3)-0.14334554) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(1).at(2)-0.21661214) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(1).at(3)-0.2117354) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(2).at(3)- (-0.25225453)) < 0.000001 );
+
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(1).at(0)-0.6770032) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(2).at(0)-0.14664712) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(3).at(0)-0.14334554) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(2).at(1)-0.21661214) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(3).at(1)-0.2117354) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(3).at(2)- (-0.25225453)) < 0.000001 );
+
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(0).at(0)-1.0) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(1).at(1)-1.0) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(2).at(2)-1.0) < 0.000001 );
+	CPPUNIT_ASSERT( fabs(correlationInfo->corrs.at(3).at(3)-1.0) < 0.000001 );
+
+
+	cout << "\t\tFinish testgetAllPairsPearsons." << endl;
+
+
+}
+
+void AnalysisTest::testFilter() {
+	cout << "\tStart testFilter..." << endl;
+	std::vector<std::string> fileNames;
+	double tol = 0.0001; // tolerance for voltage error
+	////////////////////////////////////////////////////////////////////////////////
+	// Population 1
+	////////////////////////////////////////////////////////////////////////////////
+	hrlAnalysis::SpikeAnalysisAccess spikeAnalysis1(0,500,0,5,fileNames,6);
+	// Fill in the spike information.
+	int temp1[] = {54,145,170};
+	int temp2[] = {282,309,368,402};
+	for(int i = 0; i < 3; i++) {
+		spikeAnalysis1.cellActivityAccess_->at(0).push_back(temp1[i]);
+	}
+	for(int i = 0; i < 4; i++) {
+		spikeAnalysis1.cellActivityAccess_->at(1).push_back(temp2[i]);
+	}
+	spikeAnalysis1.paramsInAccess_->isDataCompiled = true;
+	hrlAnalysis::PopFilterInfoPtr info1 = spikeAnalysis1.filterPopGauss(30);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Population 2
+	////////////////////////////////////////////////////////////////////////////////
+	hrlAnalysis::SpikeAnalysisAccess spikeAnalysis2(0,500,0,5,fileNames,6);
+	// Fill in the spike information.
+	int temp3[] = {42,199,305,331,371,391,412};
+	int temp4[] = {216,238,380};
+	for(int i = 0; i < 7; i++) {
+		spikeAnalysis2.cellActivityAccess_->at(0).push_back(temp3[i]);
+	}
+	for(int i = 0; i < 3; i++) {
+		spikeAnalysis2.cellActivityAccess_->at(4).push_back(temp4[i]);
+	}
+	spikeAnalysis2.paramsInAccess_->isDataCompiled = true;
+	hrlAnalysis::PopFilterInfoPtr info2 = spikeAnalysis2.filterPopGauss(30);
+	////////////////////////////////////////////////////////////////////////////////
+	// Load data files
+	////////////////////////////////////////////////////////////////////////////////
+	// Only Cells 1 and 2 have spikes in this period.
+	AnalysisData *data = new AnalysisData();
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter1_cell1.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info1->states.at(0),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter1_cell2.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info1->states.at(1),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter1_cell3.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info1->states.at(2),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter1_cell4.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info1->states.at(3),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter1_cell5.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info1->states.at(4),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter1_cell6.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info1->states.at(5),tol));
+
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter2_cell1.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info2->states.at(0),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter2_cell2.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info2->states.at(1),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter2_cell3.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info2->states.at(2),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter2_cell4.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info2->states.at(3),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter2_cell5.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info2->states.at(4),tol));
+	CPPUNIT_ASSERT(data->fillFilterData( string(STATE_FILE_STR_PREFIX) + string("popFilter2_cell6.dat") ));
+	CPPUNIT_ASSERT(data->compareFilterData(info2->states.at(5),tol));
+
+	cout << "\t\tFinish testFilter." << endl;
+}
+
+void AnalysisTest::testStateDistance() {
+	cout << "\tStart testStateDistance..." << endl;
+	std::vector<std::string> fileNames;
+	double tol = 0.0001; // tolerance for voltage error
+	////////////////////////////////////////////////////////////////////////////////
+	// Population 1
+	////////////////////////////////////////////////////////////////////////////////
+	hrlAnalysis::SpikeAnalysisAccess spikeAnalysis1(0,20,0,5,fileNames,6);
+	// Fill in the spike information.
+	int temp1[] = {3};
+	for(int i = 0; i < 1; i++) {
+		spikeAnalysis1.cellActivityAccess_->at(1).push_back(temp1[i]);
+	}
+	spikeAnalysis1.paramsInAccess_->isDataCompiled = true;
+	hrlAnalysis::PopFilterInfoPtr info1 = spikeAnalysis1.filterPopGauss(30);
+	////////////////////////////////////////////////////////////////////////////////
+	// Population 2
+	////////////////////////////////////////////////////////////////////////////////
+	hrlAnalysis::SpikeAnalysisAccess spikeAnalysis2(0,20,0,5,fileNames,6);
+	// Fill in the spike information.
+	int temp3[] = {6};
+	int temp4[] = {15};
+	for(int i = 0; i < 1; i++) {
+		spikeAnalysis2.cellActivityAccess_->at(0).push_back(temp3[i]);
+	}
+	for(int i = 0; i < 1; i++) {
+		spikeAnalysis2.cellActivityAccess_->at(5).push_back(temp4[i]);
+	}
+	spikeAnalysis2.paramsInAccess_->isDataCompiled = true;
+	hrlAnalysis::PopFilterInfoPtr info2 = spikeAnalysis2.filterPopGauss(30);
+	////////////////////////////////////////////////////////////////////////////////
+	// State Distance
+	////////////////////////////////////////////////////////////////////////////////
+	hrlAnalysis::StateDistancePtr output = calcStateDistance(info1, info2);
+	////////////////////////////////////////////////////////////////////////////////
+	// Load data files
+	////////////////////////////////////////////////////////////////////////////////
+	// Only Cells 1 and 2 have spikes in this period.
+	AnalysisData *data = new AnalysisData();
+	CPPUNIT_ASSERT(data->fillStateData( string(STATE_FILE_STR_PREFIX) + string("pop_state.dat") ));
+	CPPUNIT_ASSERT(data->compareStateData(output->state,tol));
+
+	cout << "\t\tFinish testgetStateDistance." << endl;
+
+}
+
 

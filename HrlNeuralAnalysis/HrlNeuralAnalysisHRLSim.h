@@ -31,6 +31,8 @@
 #define HRLNEURALANALYSISHRLSIM_H
 
 #include <HrlNeuralAnalysis.h>
+
+#if INCLUDE_SERIALIZATION
 #include <boost/serialization/base_object.hpp>
 
 namespace boost {
@@ -38,6 +40,8 @@ namespace serialization {
 	class access;
 }
 }
+#endif
+
 
 namespace hrlAnalysis {
 
@@ -69,13 +73,14 @@ class HrlNeuralAnalysisHRLSim : public HrlNeuralAnalysis
         uint processFile(std::ifstream &fpIn);
         void processLine(std::vector<int> &line, uint numSpikes, int time);
         uint offset_;
-
+#if INCLUDE_SERIALIZATION
         friend class boost::serialization::access;
         template <typename Archive>
         void serialize(Archive& ar, const unsigned version) {
         	ar & boost::serialization::base_object<HrlNeuralAnalysis>(*this);
         }
 
+#endif
 };
 
 typedef boost::shared_ptr<HrlNeuralAnalysisHRLSim> HrlNeuralAnalysisHRLSimPtr;

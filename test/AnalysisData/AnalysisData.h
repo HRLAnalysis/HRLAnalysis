@@ -38,6 +38,7 @@
 #include <sstream>
 #include <algorithm>
 #include <math.h>
+#include <iterator>
 
 #define     TOLERANCE   0.01
 
@@ -51,6 +52,8 @@ class AnalysisData {
         bool fillWindowRates(std::string fileName);
         bool fillCOV(std::string fileName);
         bool fillVoltageData(std::string fileName);
+        bool fillFilterData(std::string fileName);
+        bool fillStateData(std::string fileName);
 
         bool compareRasterData(std::vector<std::pair<int,int> > &data);
         bool compareSpikeBins(std::vector<std::pair<int,int> > &data);
@@ -66,6 +69,8 @@ class AnalysisData {
         bool compareSpikeRates(std::vector<double> &data);
         bool compareWindowRates(std::vector<double> &data);
         bool compareCOV(std::vector<double> &data);
+        bool compareFilterData(std::vector<double> &data, double tol);
+        bool compareStateData(std::vector<double> &data, double tol);
 
         bool compareVoltageData(std::vector< std::vector<float> > &data, float tol);
 
@@ -77,12 +82,15 @@ class AnalysisData {
         bool fillData(std::vector<std::pair<int,int> > &data, std::string fileName);
         bool fillData(std::vector<std::pair<int,double> > &data, std::string fileName);
         bool fillData(std::vector< std::vector<float> > &data, std::string fileName);
+        bool fillData(std::vector<double> &data, std::string fileName);
+
         bool compareData(std::vector<std::pair<int,int> > &data1, std::vector<std::pair<int,int> > &data2);
         bool compareData(std::vector<std::pair<int,double> > &data1, std::vector<std::pair<int,double> > &data2);
 
         bool compareData(std::vector<std::pair<int,int> > &data1, std::vector<int> &data2, int dimension);
         bool compareData(std::vector<std::pair<int,double> > &data1, std::vector<double> &data2);
         bool compareData(std::vector<std::pair<int,double> > &data1, std::vector<int> &data2);
+        bool compareData(std::vector<double> &data1, std::vector<double> &data2, double tol);
         
         bool compareData(std::vector<float> &data1, std::vector<float> &data2, float tol);
         bool compareData(std::vector< std::vector<float> > &data1, std::vector< std::vector<float> > &data2, float tol);
@@ -96,6 +104,40 @@ class AnalysisData {
         std::vector<std::pair<int,double> > windowRates_;
         std::vector<std::pair<int,double> > COV_;
         std::vector< std::vector<float> > voltageData_;
+        std::vector<double> filterData_;
+        std::vector<double> stateData_;
+};
+
+
+// From http://www.cplusplus.com/forum/general/7385/
+template <class T>
+class csv_istream_iterator: public std::iterator<std::input_iterator_tag, T>
+{
+	std::istream * _input;
+    char _delim;
+    std::string _value;
+public:
+    csv_istream_iterator( char delim = ',' ): _input( 0 ), _delim( delim ) {}
+    csv_istream_iterator( std::istream & in, char delim = ',' ): _input( &in ), _delim( delim ) { ++*this; }
+
+    const T operator *() const {
+    	std::istringstream ss( _value );
+        T value;
+        ss >> value;
+        return value;
+    }
+
+    std::istream & operator ++() {
+        if( !( getline( *_input, _value, _delim ) ) )
+        {
+            _input = 0;
+        }
+        return *_input;
+    }
+
+    bool operator !=( const csv_istream_iterator & rhs ) const {
+        return _input != rhs._input;
+    }
 };
 
 #endif /* ANALYSISDATA_H_ */

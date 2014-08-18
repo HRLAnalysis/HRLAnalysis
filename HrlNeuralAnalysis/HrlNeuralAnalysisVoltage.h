@@ -41,9 +41,12 @@
 #include <math.h>
 #include <VoltageInfo.h>
 #include <boost/shared_ptr.hpp>
-#include <boost/serialization/base_object.hpp>
 #include <NeuronParams.h>
 #include <HrlNeuralAnalysis.h>
+
+#if INCLUDE_SERIALIZATION
+#include <boost/serialization/base_object.hpp>
+#endif
 
 namespace hrlAnalysis {
 
@@ -83,10 +86,11 @@ class HrlNeuralAnalysisVoltage: public HrlNeuralAnalysis
          * Return the voltages as read from the voltage dump file.
          */
         const VoltageInfoPtr voltages();
-
+#if INCLUDE_SERIALIZATION
         virtual void save(std::string filename);
 
         virtual void load(std::string filename);
+#endif
 
     private:
         /**
@@ -104,13 +108,14 @@ class HrlNeuralAnalysisVoltage: public HrlNeuralAnalysis
         float spikeThreshold_;  // when detecting spikes, voltage values of this level indicate spikes
         bool getSpikes_;        // whether to extract spikes or not
 
+#if INCLUDE_SERIALIZATION
         friend class boost::serialization::access;
         template <typename Archive>
         void serialize(Archive& ar, const unsigned version) {
         	ar & boost::serialization::base_object<HrlNeuralAnalysis>(*this);
         	ar & numTimes_ & numCells_ & time_ & numNeurons_ & spikeThreshold_ & getSpikes_ & voltage_;
         }
-
+#endif
 };
 
 typedef boost::shared_ptr<HrlNeuralAnalysisVoltage> HrlNeuralAnalysisVoltagePtr;

@@ -156,6 +156,7 @@ bool HrlNeuralAnalysisVoltage::processFile(ifstream &fpIn, float * tempVoltage) 
     return retVal;
 }
 
+#if INCLUDE_SERIALIZATION
 void HrlNeuralAnalysisVoltage::save(std::string filename) {
     std::ofstream ofs(filename.c_str(),std::ofstream::out | std::ofstream::binary);
     boost::archive::binary_oarchive ar(ofs);
@@ -167,3 +168,4 @@ void HrlNeuralAnalysisVoltage::load(std::string filename) {
 	boost::archive::binary_iarchive ar(ifs);
 	ar & *this;
 }
+#endif

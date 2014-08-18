@@ -27,54 +27,21 @@
     OTHER DEALINGS IN THE SOFTWARE, INCLUDING BUT NOT LIMITED TO THE 
     COMPATIBILITY OF THIS LICENSE WITH OTHER SOFTWARE LICENSES.
 */
-#ifndef NEURALDATA_H_
-#define NEURALDATA_H_
+#ifndef ISIINFO_H_
+#define ISIINFO_H_
 
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
-#if INCLUDE_SERIALIZATION
-namespace boost {
-namespace serialization {
-	class access;
-}
-}
-#endif
-
 namespace hrlAnalysis {
 
-struct NeuronParams {
-    int startTime;
-    int endTime;
-    int startIdx;
-    int endIdx;
-    double sampleFreq;
-    bool isDataCompiled;
-    std::vector<std::string> fileNames;
-
-    NeuronParams():
-        startTime(0), endTime(0), startIdx(0), \
-        endIdx(0), sampleFreq(1000), fileNames(*(new std::vector<std::string>)), isDataCompiled(false) {};
-
-    NeuronParams(int startTimeIn, int endTimeIn, int startIdxIn, int endIdxIn, std::vector<std::string> fileNamesIn):
-		startTime(startTimeIn), endTime(endTimeIn), startIdx(startIdxIn), \
-		endIdx(endIdxIn), sampleFreq(1000), fileNames(fileNamesIn), isDataCompiled(false) {};
-
-private:
-
-#if INCLUDE_SERIALIZATION
-    friend class boost::serialization::access;
-	template<typename Archive>
-	void serialize(Archive& ar, const unsigned int version) {
-		(void)version;
-		ar & startTime & endTime & startIdx & endIdx & sampleFreq & fileNames & isDataCompiled;
-	}
-#endif
-
+struct IsiInfo
+{
+    std::vector< boost::shared_ptr< std::vector<int> > > isi;
 };
 
-typedef boost::shared_ptr<NeuronParams> NeuronParamsPtr;
+typedef boost::shared_ptr<IsiInfo> IsiInfoPtr;
 
 }
 
-#endif /* NEURALDATA_H_ */
+#endif /* ISIINFO_H_ */

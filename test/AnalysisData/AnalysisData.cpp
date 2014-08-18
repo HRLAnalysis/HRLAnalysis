@@ -98,6 +98,26 @@ bool AnalysisData::fillVoltageData(std::string fileName) {
     return success;
 }
 
+bool AnalysisData::fillFilterData(std::string fileName) {
+	filterData_.clear();
+	ifstream f(fileName.c_str());
+	if(f) {
+		copy( csv_istream_iterator<double>(f), csv_istream_iterator<double>(), insert_iterator< vector<double> >( filterData_, filterData_.begin() ) );
+		f.close();
+	}
+	return true;
+}
+
+bool AnalysisData::fillStateData(std::string fileName) {
+	filterData_.clear();
+	ifstream f(fileName.c_str());
+	if(f) {
+		copy( csv_istream_iterator<double>(f), csv_istream_iterator<double>(), insert_iterator< vector<double> >( stateData_, stateData_.begin() ) );
+		f.close();
+	}
+	return true;
+}
+
 bool AnalysisData::compareSpikeBinsAt(std::vector<int> &data, int loc) {
     bool retVal;
     if(loc == 0) {
@@ -156,6 +176,14 @@ bool AnalysisData::compareVoltageData(std::vector< std::vector<float> > &data, f
     return compareData(voltageData_, data, tol);
 }
 
+bool AnalysisData::compareFilterData(std::vector<double> &data, double tol) {
+	return compareData(filterData_, data, tol);
+}
+
+bool AnalysisData::compareStateData(std::vector<double> &data, double tol) {
+	return compareData(stateData_, data, tol);
+}
+
 /*
 void AnalysisData::dumpRaster() {
     for_each(rasterData_.begin(), rasterData_.end(), AnalysisData::printIntPair);
@@ -190,7 +218,7 @@ bool AnalysisData::fillData(std::vector<std::pair<int,int> > &data, std::string 
             fpIn >> timeIn;
             fpIn >> dataIn;
             if(!fpIn.eof()) {
-                data.push_back(make_pair(timeIn,dataIn));  // HACK: It seems really bad to not cast these to ints.
+                data.push_back(make_pair(static_cast<int>(timeIn),static_cast<int>(dataIn)));
                 //cout << "\t insert pair: \t" << timeIn << "\t" << dataIn << endl;
             }
         }
@@ -218,7 +246,7 @@ bool AnalysisData::fillData(std::vector<std::pair<int,double> > &data, std::stri
             fpIn >> timeIn;
             fpIn >> dataIn;
             if(!fpIn.eof()) {
-                data.push_back(make_pair(timeIn,dataIn));
+                data.push_back(make_pair(static_cast<int>(timeIn),dataIn));
             }
         }
         retVal = true;
@@ -228,6 +256,25 @@ bool AnalysisData::fillData(std::vector<std::pair<int,double> > &data, std::stri
     return retVal;
 }
 
+bool AnalysisData::fillData(std::vector<double> &data, std::string fileName) {
+	bool retVal = false;
+	double val;
+
+	ifstream fpIn(fileName.c_str(), ios::in);
+
+	if(!fpIn.fail()) {
+		while(fpIn.good()) {
+			fpIn >> val;
+			if(!fpIn.eof()) {
+				cout << "\t" << val << endl;
+				data.push_back(val);
+			}
+		}
+		retVal = true;
+	}
+	fpIn.close();
+	return retVal;
+}
 
 bool AnalysisData::fillData(std::vector< std::vector<float> > &data, std::string fileName) {
     bool retVal = false;
@@ -444,6 +491,33 @@ bool AnalysisData::compareData(std::vector<float> &data1, std::vector<float> &da
     return retVal;
 }  
 
+bool AnalysisData::compareData(std::vector<double> &data1, std::vector<double> &data2, double tol) {
+    bool retVal = true;
+    int currentLine = 1;
+    std::vector<double>::iterator data1It = data1.begin();
+    std::vector<double>::iterator data2It = data2.begin();
+
+    // Check the length
+    if(data1.size() != data2.size()) {
+        retVal = false;
+        cout << "\t\tVector lengths do not match!\tdata1: " << data1.size() << "\tdata2:" << data2.size() << endl;
+    } else {
+        while(data1It != data1.end() && data2It != data2.end() && retVal ) {
+            // Compare the elements
+          if( fabs(*data1It - *data2It) > tol ) {
+                retVal = false;
+                cout << "\t\tVectors do not match at item " << currentLine << endl;
+                cout << "\t\t\tData1 element \t" << *data1It << endl;
+                cout << "\t\t\tData2 element \t" << *data2It << endl;
+            }
+            // Increment the iterators and the current line.
+            ++data1It;
+            ++data2It;
+            ++currentLine;
+        }
+    }
+    return retVal;
+}
 
 bool AnalysisData::compareData(std::vector< std::vector<float> > &data1, std::vector< std::vector<float> > &data2, float tol) {
     bool retVal = true;
